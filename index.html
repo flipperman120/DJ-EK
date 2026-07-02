@@ -1,573 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DJ EK | Next-Gen Audio Experience</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg-main: #050508;
-  --bg-card: #0d0e15;
-  --accent-cyan: #00f0ff;
-  --accent-pink: #ff007f;
-  --text-main: #f0f1f5;
-  --glow-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-body {
-  background: var(--bg-main);
-  color: var(--text-main);
-  overflow-x: hidden;
-}
-
-/* Cyber Grid Background Effect */
-.grid-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Navigation */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 25px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(5, 5, 8, 0.75);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 100;
-}
-
-.logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 38px;
-  font-weight: 800;
-  color: var(--text-main);
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  position: relative;
-}
-
-.logo span {
-  color: var(--accent-cyan);
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 40px;
-}
-
-nav a {
-  color: var(--text-main);
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 14px;
-  transition: 0.3s ease;
-}
-
-nav a:hover {
-  color: var(--accent-cyan);
-  text-shadow: 0 0 8px var(--accent-cyan);
-}
-
-/* Hero Section with House Party Image */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
-  background: 
-    linear-gradient(to bottom, rgba(5,5,8,0.4), var(--bg-main)),
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
-    url("https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?q=80&w=1920&auto=format&fit=crop");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.hero-content {
-  max-width: 900px;
-}
-
-.hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(60px, 10vw, 120px);
-  font-weight: 800;
-  line-height: 0.9;
-  text-transform: uppercase;
-  letter-spacing: -3px;
-  background: linear-gradient(135deg, #fff 30%, var(--accent-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
-}
-
-.hero h2 {
-  font-size: clamp(20px, 4vw, 32px);
-  font-weight: 600;
-  color: var(--accent-pink);
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  margin-bottom: 25px;
-  text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
-}
-
-.hero p {
-  font-size: clamp(16px, 2.5vw, 22px);
-  margin-bottom: 45px;
-  opacity: 0.8;
-  letter-spacing: 1px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 18px 40px;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #000;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 14px;
-  background: var(--accent-cyan);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 2px solid var(--accent-cyan);
-}
-
-.btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
-  background: transparent;
-  color: var(--accent-cyan);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--text-main);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-secondary:hover {
-  border-color: var(--text-main);
-  background: var(--text-main);
-  color: #000;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-}
-
-/* Generic Section Styles */
-section {
-  padding: 120px 8%;
-  position: relative;
-}
-
-.title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(36px, 6vw, 56px);
-  font-weight: 800;
-  margin-bottom: 50px;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-}
-
-.title span {
-  color: var(--accent-cyan);
-}
-
-/* About Section */
-.about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.about p {
-  font-size: 20px;
-  line-height: 1.7;
-  color: #a0a5b5;
-}
-
-.about-img-wrapper {
-  position: relative;
-}
-
-.about-img-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--accent-pink);
-  border-radius: 8px;
-  z-index: -1;
-}
-
-/* Updated to a sleek, realistic controller setup */
-.about img {
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-  height: 450px;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Timeline Styling */
-#timeline-section {
-  background: #090a0f;
-  border-top: 1px solid rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-.timeline {
-  position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-
-.timeline::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-pink));
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -1px;
-}
-
-.timeline-item {
-  padding: 20px 60px;
-  position: relative;
-  width: 50%;
-}
-
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  right: -6px;
-  background-color: var(--bg-main);
-  border: 3px solid var(--accent-cyan);
-  top: 35px;
-  border-radius: 50%;
-  z-index: 1;
-  box-shadow: 0 0 10px var(--accent-cyan);
-}
-
-.left { left: 0; }
-.right { left: 50%; }
-
-.right::after {
-  left: -6px;
-  border-color: var(--accent-pink);
-  box-shadow: 0 0 10px var(--accent-pink);
-}
-
-.timeline-content {
-  padding: 35px;
-  background: var(--bg-card);
-  position: relative;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: 0.3s ease;
-}
-
-.timeline-content:hover {
-  border-color: rgba(0, 240, 255, 0.3);
-  transform: scale(1.02);
-}
-
-.right .timeline-content:hover {
-  border-color: rgba(255, 0, 127, 0.3);
-}
-
-.timeline-content h3 {
-  font-family: 'Syne', sans-serif;
-  color: var(--text-main);
-  margin-bottom: 5px;
-  font-size: 22px;
-  text-transform: uppercase;
-}
-
-.timeline-content h4 {
-  margin-bottom: 15px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--accent-cyan);
-  letter-spacing: 2px;
-}
-
-.right .timeline-content h4 {
-  color: var(--accent-pink);
-}
-
-.timeline-content p {
-  color: #a0a5b5;
-  line-height: 1.6;
-}
-
-/* Services Section */
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
-}
-
-.card {
-  background: var(--bg-card);
-  padding: 45px 35px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.card:hover::before {
-  transform: scaleX(1);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(255,255,255,0.1);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-}
-
-.card h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  font-family: 'Syne', sans-serif;
-  text-transform: uppercase;
-}
-
-.card p {
-  color: #a0a5b5;
-  line-height: 1.6;
-  font-size: 16px;
-}
-
-/* Footer */
-footer {
-  padding: 50px;
-  text-align: center;
-  background: #020204;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  letter-spacing: 2px;
-  font-size: 13px;
-  text-transform: uppercase;
-  color: #606575;
-}
-
-/* Responsive Overrides */
-@media(max-width:900px){
-  nav {
-    padding: 20px 5%;
-  }
-  nav ul {
-    display: none;
-  }
-  .about {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .about img {
-    height: 300px;
-  }
-  
-  /* Timeline Responsive Fixes */
-  .timeline::after {
-    left: 30px;
-  }
-  .timeline-item {
-    width: 100% !important;
-    padding-left: 60px !important;
-    padding-right: 10px !important;
-    left: 0 !important;
-  }
-  .timeline-item::after {
-    left: 24px !important;
-  }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DJ EK | Next-Gen Audio Experience</title>
+  <meta name="description" content="DJ EK — mobile DJ services for house parties, school dances, and sports events. Book your date today.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grid-bg" aria-hidden="true"></div>
 
-<div class="grid-bg"></div>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="#home">DJ <span>EK</span></a>
 
-<nav>
-  <div class="logo">DJ <span>EK</span></div>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#timeline-section">History</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nmSyqkg0pTt6lsF6iOoiWk7cPvixwEo9imuPgDzgfh7rSQ/viewform" target="_blank">Book Event</a></li>
-  </ul>
-</nav>
+      <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
 
-<main>
-  <section class="hero">
-    <div class="hero-content">
-      <h1>DJ EK</h1>
-      <h2>Next-Gen Audio Entertainment</h2>
-      <p>⚡ Birthdays • 🎓 School Dances • 🏈 Local Sports Events</p>
-      <div class="buttons">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nmSyqkg0pTt6lsF6iOoiWk7cPvixwEo9imuPgDzgfh7rSQ/viewform" target="_blank" class="btn">Secure Your Date</a>
-        <a href="#services" class="btn btn-secondary">Explore Services</a>
-      </div>
+      <nav id="primary-nav" class="primary-nav" role="navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#timeline-section">History</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a class="book-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSc8nmSyqkg0pTt6lsF6iOoiWk7cPvixwEo9imuPgDzgfh7rSQ/viewform" target="_blank" rel="noopener">Book Event</a></li>
+        </ul>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section id="about">
-    <div class="about">
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="hero-content container">
+        <h1>DJ EK</h1>
+        <h2>Next-Gen Audio Entertainment</h2>
+        <p class="lead">⚡ Birthdays • 🎓 School Dances • 🏈 Local Sports Events</p>
+        <div class="buttons">
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSc8nmSyqkg0pTt6lsF6iOoiWk7cPvixwEo9imuPgDzgfh7rSQ/viewform" target="_blank" rel="noopener">Secure Your Date</a>
+          <a class="btn btn-secondary" href="#services">Explore Services</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container">
       <div>
         <h2 class="title">The <span>Sound</span></h2>
         <p>
-          DJ EK delivers high-octane soundscapes custom-tuned for local school functions, compact house parties, and energetic private settings. Bringing a fully versatile digital controller setup directly to your venue, every event receives clear track transitions, tightly balanced sound reinforcement, and an unmatched modern vibe.
+          DJ EK delivers high‑octane soundscapes custom‑tuned for school functions, compact house parties, and energetic private settings. Professional setup, clean edits, and crowd‑aware playlists ensure every event stays on beat.
         </p>
       </div>
       <div class="about-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop" alt="Compact modern two-channel mobile DJ controller setup">
+        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop" alt="Modern two-channel mobile DJ controller setup" loading="lazy" width="800" height="450">
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="timeline-section">
-    <h2 class="title" style="text-align: center;">Evolution of <span>the Beat</span></h2>
-    <div class="timeline">
-      
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3>Coining the Term</h3>
-          <h4>1935</h4>
-          <p>Commentator Walter Winchell originates the phrase "disc jockey," forever capturing the skill of blending radio broadcast tracks live.</p>
+    <section id="timeline-section" class="timeline-section">
+      <h2 class="title" style="text-align:center;">Evolution of <span>the Beat</span></h2>
+      <div class="timeline container">
+        <!-- timeline items (kept concise) -->
+        <article class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Coining the Term</h3>
+            <h4>1935</h4>
+            <p>Commentator Walter Winchell originates the phrase "disc jockey," capturing the skill of blending tracks live.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item right">
+          <div class="timeline-content">
+            <h3>The Dual Deck</h3>
+            <h4>1947</h4>
+            <p>Early innovators connect double‑turntable setups, pioneering continuous play layouts engineered to kill dead air.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Digital Dominance</h3>
+            <h4>2010</h4>
+            <p>The vinyl ecosystem scales into MIDI controllers and software sync nodes, reconstructing live audio mixing for mobile setups.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="services" class="services container">
+      <h2 class="title">Our <span>Arenas</span></h2>
+      <div class="cards">
+        <div class="card">
+          <h3>🎂 House Parties</h3>
+          <p>Immersive playlists curated block‑by‑block across modern genres.</p>
+        </div>
+        <div class="card">
+          <h3>🎓 School Dances</h3>
+          <p>Pristine edits, clean playback, and crowd‑safe lighting control.</p>
+        </div>
+        <div class="card">
+          <h3>🏈 Sports Events</h3>
+          <p>Pregame hype, real‑time transitions, and crowd energy control.</p>
         </div>
       </div>
+    </section>
+  </main>
 
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h3>The Dual Deck</h3>
-          <h4>1947</h4>
-          <p>Early innovators connect double-turntable setups, pioneering continuous play layouts engineered to kill dead air permanently.</p>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="container">© 2026 DJ EK • Next‑Gen Audio Entertainment</div>
+  </footer>
 
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3>The Club Pioneers</h3>
-          <h4>1960s – 1970s</h4>
-          <p>Underground heavyweights engineer early beatmatching while global sound systems perfect track manipulation styles.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h3>The Breakbeat</h3>
-          <h4>1973</h4>
-          <p>DJ Kool Herc introduces the legendary "Merry-Go-Round" loop sequence in the Bronx, laying down the structural foundation for hip-hop.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3>Digital Dominance</h3>
-          <h4>2010</h4>
-          <p>The vinyl ecosystem scales into MIDI controllers and software sync nodes, reconstructing live audio mixing for mobile setups.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h3>The Modern Frontier</h3>
-          <h4>2026</h4>
-          <p>We take traditional selector roots and cross-fuse them with pristine digital systems to deliver premium crowd control.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nmSyqkg0pTt6lsF6iOoiWk7cPvixwEo9imuPgDzgfh7rSQ/viewform" target="_blank" class="btn" style="margin-top: 20px; padding: 12px 25px; font-size: 13px; width: 100%; text-align: center;">Book DJ EK Instantly</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="services">
-    <h2 class="title">Our <span>Arenas</span></h2>
-    <div class="services">
-      <div class="card">
-        <h3>🎂 House Parties</h3>
-        <p>Immersive playlist layouts curated block-by-block across all modern genres.</p>
-      </div>
-      <div class="card">
-        <h3>🎓 School Dances</h3>
-        <p>Pristine edits, clean playback, and custom lighting setups designed for great crowd energy.</p>
-      </div>
-      <div class="card">
-        <h3>🏈 Sports Events</h3>
-        <p>Pregame hype, real-time stadium transitions, and unmatched energy manipulation for high-stakes games.</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © 2026 DJ EK • Next-Gen Audio Entertainment
-</footer>
-
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
